@@ -5,10 +5,23 @@ Aplicación **Planificación de Asignaturas** (SAP UI5 / Fiori) migrada desde SA
 ---
 
 ## 🚀 1. Clonar el repositorio desde Azure DevOps
+### nota: Al clonar el repositorio , probablemente pedira credenicales del repositorio de Azure DevOps
+
+```text
+User: <tu-usuario-azure-devops>
+Password: <tu-personal-access-token>
+```
 
 ```bash
-git clone https://dev.azure.com/UMAYOR/Proyectos/_git/ZSLCM_PLANNING_DOC
-cd ZSLCM_PLANNING_DOC
+git clone [url azure] 
+```
+
+
+
+Ubircarce en la carpeta a nivel de comandos, terminal
+
+```bash
+cd [carpeta]
 ```
 
 ---
