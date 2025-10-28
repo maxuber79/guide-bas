@@ -56,6 +56,10 @@ Para probar la app directamente (sin Fiori Launchpad), ejecuta:
 npm run start-noflp
 ```
 
+Levantar la app con Launchpad, ejecutar:
+```bash
+npm run start-mock
+```
 Esto corre:
 
 ```bash
