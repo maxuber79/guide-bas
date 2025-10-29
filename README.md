@@ -1,15 +1,22 @@
-# 🧠 Proyecto SAP Fiori – ZSLCM_PLANNING_DOC
+# 🧠 Proyecto SAP Fiori en SAP Business Application Studio
 
 Aplicación **Planificación de Asignaturas** (SAP UI5 / Fiori) migrada desde SAP Web IDE a **SAP Business Application Studio (BAS)**, con soporte para ejecución local, entorno QAS y despliegue productivo.
 
+---
+## 🔖 Guía Rápida GIT 
+Documentación base para configurar, iniciar y trabajar con repositorios GIT. Incluye comandos esenciales, tips útiles y algunos atajos pro pa’ devs con estilo. 😎
+
+ 
+👉 [https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica](visitar repositorio)
+ 
 ---
 
 ## 🚀 1. Clonar el repositorio desde Azure DevOps
 ### Nota: Al clonar el repositorio, probablemente pedirá credenciales del repositorio de Azure DevOps.
 
 ```text
-User: <tu-usuario-azure-devops>
-Password: <tu-personal-access-token>
+Username: xxxxx.xxxxx
+Password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ```bash
