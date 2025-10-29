@@ -7,7 +7,7 @@ Aplicación **Planificación de Asignaturas** (SAP UI5 / Fiori) migrada desde SA
 Documentación base para configurar, iniciar y trabajar con repositorios GIT. Incluye comandos esenciales, tips útiles y algunos atajos pro pa’ devs con estilo. 😎
 
  
-👉 [https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica](visitar repositorio) 
+👉 [Visitar repositorio](https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica)
  
 ---
 
