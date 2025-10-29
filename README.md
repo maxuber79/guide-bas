@@ -1,14 +1,20 @@
-# 🧠 Proyecto SAP Fiori en SAP Business Application Studio
+# 🧠 Guía General de Trabajo en SAP Fiori / BAS / Azure DevOps
+
+## 📚 Índice 
+- 🚀 [1. Clonar repositorio](#-1-clonar-el-repositorio-desde-azure-devops)
+- ⚙️ [2. Instalar dependencias](#-2-instalar-dependencias)
+- 💻 [3. Ejecutar aplicación en SAP BAS](#-3-ejecutar-aplicación-en-sap-bas)
+- 👤 [4. Modelo de Usuario Global](#-4-modelo-de-usuario-global)
+- 🌍 [5. Conexión a Backend SAP](#-5-conexión-a-backend-sap)
+- 📦 [6. Build & Deploy MTA](#-6-build--deploy-mta)
+- 🔄 [7. Flujo de Pull Request (Azure DevOps)](#-7-flujo-de-pull-request-azure-devops)
+- 🪓 [8. Guía Rápida GIT](#-8-guía-rápida-git)
+
+---
 
 Aplicación **Planificación de Asignaturas** (SAP UI5 / Fiori) migrada desde SAP Web IDE a **SAP Business Application Studio (BAS)**, con soporte para ejecución local, entorno QAS y despliegue productivo.
 
----
-## 🔖 Guía Rápida GIT 
-Documentación base para configurar, iniciar y trabajar con repositorios GIT. Incluye comandos esenciales, tips útiles y algunos atajos pro pa’ devs con estilo. 😎
-
- 
-👉 [Visitar repositorio](https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica)
- 
+  
 ---
 
 ## 🚀 1. Clonar el repositorio desde Azure DevOps
@@ -169,7 +175,27 @@ fiori cfDeploy
 
 ## 🚀 10. Deploy a Cloud Foundry (BTP)
 
-### 10.1 Compilar proyecto MTA
+
+### Autenticarse en "Login to Cloud Foundry"
+1. desplegar buscador por medio de los comandos control + p (cuadro de diálogo Quick Open Apertura Rápida).
+
+![](img/paso1.png)
+
+2. Click en "Login to Cloud Foundry" y llenar lo campos requeridos o realizar click en "Open a new browser page to generate your SSO passcode 
+
+![](img/paso2.png)
+
+
+3. Copiar  codigo de autenticación
+
+![](img/paso3.png)
+
+4. Pegar codigo en "Enter yout SSO Passcode y hacer click en "Sing In"
+
+![](img/paso4.png)
+
+
+### 10.2 Compilar proyecto MTA
 
 1. Ubicar `mta.yaml`
 2. Clic derecho → **Build MTA Project**
@@ -180,13 +206,13 @@ Se generará:
 mta_archives/com.umayor.sclm.zslcmplanningdoc_0.0.1.mtar
 ```
 
-### 10.2 Desplegar
+### 10.3 Desplegar
 
 1. Abrir carpeta `mta_archives/`
 2. Clic derecho → **Deploy MTA Archive**
 3. Esperar finalización en terminal
 
-### 10.3 Verificación
+### 10.4 Verificación
 
 ```bash
 cf apps
@@ -198,7 +224,7 @@ Aplicación visible en:
 - BTP Cockpit → HTML5 Applications
 - Launchpad, si configurado
 
-### 10.4 Troubleshooting
+### 10.5 Troubleshooting
 
 | Error | Causa | Solución |
 |------|-------|---------|
@@ -206,13 +232,20 @@ Aplicación visible en:
 | `No space left on device` | Dev Space lleno | Limpiar / ampliar dev space |
 | No aparece en Launchpad | Falta content deploy | Revisar `xs-app.json` |
 
-### 10.5 Automatizar
+### 10.6 Automatizar
 
 ```bash
 mbt build -s . && cf deploy mta_archives/*.mtar
 ```
 
 ---
+
+## 🪓 8. Guía Rápida GIT
+
+Documentación base para configurar, iniciar y trabajar con repositorios GIT.  
+Incluye comandos esenciales, tips útiles y atajos.
+
+👉 [Visitar repositorio](https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica)
 
 **Desarrollado por:**  
 Claudio Muñoz – Universidad Mayor 💙  

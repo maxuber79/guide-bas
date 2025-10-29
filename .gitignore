@@ -1,0 +1,8 @@
+# Ignora todos los archivos de PowerPoint
+*.pptx
+# Archivos específicos que no deben subirse
+configuracion_local.ini
+claves_secretas.txt
+DEPLOY.md
+README_DEPLOY_MERGED.md
+README_GENERAL.md
