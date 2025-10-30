@@ -30,10 +30,14 @@ git clone [url azure]
 ```
 
 Ubicarse en la carpeta a nivel de comandos, terminal:
-
+```bash
+dir [todas las subcarpetas]
+```
 ```bash
 cd [carpeta]
 ```
+Nota: A escribir el comando **cd** más los primeros caracteres del nombre de 
+carpeta, se puede precionar [tab] para que complete el nombre de carpeta.
 
 ---
 
@@ -41,6 +45,11 @@ cd [carpeta]
 
 ```bash
 npm install
+```
+Opción corta:
+
+```bash
+npm i
 ```
 
 Esto descarga las librerías de UI5 Tooling y Fiori Tools definidas en el `package.json`.
@@ -112,9 +121,9 @@ Datos simulados:
 
 ```js
 {
-  "login_name": "120003496",
+  "login_name": "rut_usuario_dev",
   "displayName": "Usuario Desarrollo BAS",
-  "email": "dev@umayor.cl"
+  "email": "name@dominio.cl"
 }
 ```
 
