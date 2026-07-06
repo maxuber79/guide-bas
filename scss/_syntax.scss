@@ -1,0 +1,16 @@
+/* ============================================================
+   _syntax.scss
+   Resaltado "ligero" estilo Monokai para los bloques de código.
+   ============================================================ */
+
+.cmd-block,
+.all-cmd,
+.hit-cmd,
+.term-body {
+  .tk-prompt { color: var(--green); font-weight: 700; }
+  .tk-cmd    { color: var(--accent); font-weight: 600; }
+  .tk-flag   { color: var(--blue); }
+  .tk-str    { color: var(--yellow); }
+  .tk-op     { color: var(--purple); }
+  .tk-path   { color: var(--orange); }
+}

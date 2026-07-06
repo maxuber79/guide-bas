@@ -1,8 +1,32 @@
-# Ignora todos los archivos de PowerPoint
+# Dependencias
+node_modules/
+
+# CSS compilado (regeneramos con build)
+assets/css/
+assets/vendor/
+
+# Documentos internos / pesados
 *.pptx
-# Archivos específicos que no deben subirse
-configuracion_local.ini
-claves_secretas.txt
+
+# Documentacion auxiliar (la landing ya cubre el contenido)
 DEPLOY.md
 README_DEPLOY_MERGED.md
 README_GENERAL.md
+configuracion_local.ini
+claves_secretas.txt
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/settings.json
+.idea/

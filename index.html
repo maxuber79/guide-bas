@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es" data-theme="monokai">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Guía interactiva de trabajo con SAP Business Application Studio (BAS), Fiori UI5, Azure DevOps y BTP / Cloud Foundry. Snippets copy-to-clipboard, troubleshooting y tips de productividad." />
+  <meta name="theme-color" content="#272822" />
+  <meta name="author" content="WEBMAIN" />
+
+  <title>Guía SAP Business Application Studio · Cheatsheet</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Vendor local (Bootstrap + Bootstrap Icons) -->
+  <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/vendor/css/bootstrap-icons.min.css" />
+
+  <!-- Devicon — iconos de herramientas (Git, NPM, etc.) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <!-- Nuestra hoja compilada (la genera `npm run build:css`) -->
+  <link rel="stylesheet" href="assets/css/styles.min.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top app-navbar" aria-label="Navegación principal">
+    <div class="container-xxl">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#hero">
+        <i class="bi bi-diagram-3-fill brand-mark"></i>
+        <span class="brand-text">sap<span class="brand-accent">_</span>bas<span class="brand-accent">_</span>guide</span>
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Menú">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#flujo">Flujo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comandos">Comandos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#troubleshooting">Troubleshooting</a></li>
+          <li class="nav-item"><a class="nav-link" href="#atajos">Atajos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+        </ul>
+
+        <!-- theme switch para móvil (visible solo en collapse) -->
+        <div class="theme-switch d-md-none mt-3" role="radiogroup" aria-label="Cambiar tema">
+          <button class="theme-btn is-active" data-theme="monokai" type="button" title="Tema Monokai" role="radio" aria-checked="true">
+            <i class="bi bi-moon-stars-fill"></i>
+            <span>Monokai</span>
+          </button>
+          <button class="theme-btn" data-theme="amber" type="button" title="Tema Ambar" role="radio" aria-checked="false">
+            <i class="bi bi-sun-fill"></i>
+            <span>Ambar</span>
+          </button>
+        </div>
+
+        <div class="d-flex gap-2 align-items-center">
+          <button id="searchToggle"
+                  class="btn btn-outline-accent btn-sm"
+                  type="button"
+                  title="Buscar comando (Ctrl + K)">
+            <i class="bi bi-search"></i>
+            <span class="d-none d-md-inline ms-1">Buscar</span>
+            <kbd class="ms-2 d-none d-lg-inline" style="background: var(--line); color: var(--fg-mute); border: none; border-radius: 4px; padding: 1px 6px;">⌘K</kbd>
+          </button>
+
+          <div class="theme-switch d-none d-md-inline-flex" role="radiogroup" aria-label="Cambiar tema">
+            <button class="theme-btn is-active" data-theme="monokai" type="button" title="Tema Monokai" role="radio" aria-checked="true">
+              <i class="bi bi-moon-stars-fill"></i>
+              <span>Monokai</span>
+            </button>
+            <button class="theme-btn" data-theme="amber" type="button" title="Tema Ambar" role="radio" aria-checked="false">
+              <i class="bi bi-sun-fill"></i>
+              <span>Ambar</span>
+            </button>
+          </div>
+
+          <a class="btn btn-outline-accent btn-sm"
+             href="https://github.com/maxuber79/guide-bas"
+             target="_blank" rel="noopener">
+            <i class="bi bi-github"></i>
+            <span class="d-none d-md-inline ms-1">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Panel de búsqueda (fijo debajo del navbar) -->
+  <div class="search-panel" id="searchPanel" aria-hidden="true">
+    <div class="search-inner">
+      <div class="container-xxl">
+        <div class="search-input-wrap">
+          <div class="input-group input-group-lg">
+            <span class="input-group-text bg-transparent border-end-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input id="searchInput"
+                   type="search"
+                   class="form-control border-start-0"
+                   placeholder="Buscar comando, paso o categoría… (ej: start-noflp, mbt build, fiori)"
+                   autocomplete="off"
+                   aria-label="Buscar comando" />
+            <button class="btn btn-ghost" type="button" id="searchClose" aria-label="Cerrar búsqueda">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </div>
+        <div id="searchResults" class="search-results" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+  <header id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container-xxl position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <span class="hero-tag">
+            <i class="bi bi-stars"></i> Cheatsheet interactivo · Open Source
+          </span>
+          <h1 class="hero-title">
+            SAP Business<br />
+            <span class="hero-accent">Application Studio</span>
+            <span class="hero-cursor" aria-hidden="true">|</span>
+          </h1>
+          <p class="hero-lead">
+            Una guía rápida y enfocada para trabajar con
+            <strong>SAP BAS</strong>, <strong>Fiori UI5</strong>,
+            <strong>Azure DevOps</strong> y <strong>BTP / Cloud Foundry</strong>.
+            Click para copiar el snippet, listo para pegar en tu terminal o en BAS.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a href="#flujo" class="btn btn-accent btn-lg">
+              <i class="bi bi-grid-fill me-1"></i> Ver flujo completo
+            </a>
+            <a href="#comandos" class="btn btn-outline-accent btn-lg">
+              <i class="bi bi-list-ol me-1"></i> Todos los comandos
+            </a>
+            <button class="btn btn-outline-accent btn-lg" id="scrollSearch" type="button">
+              <i class="bi bi-search me-1"></i> Buscar
+            </button>
+          </div>
+
+          <div class="hero-stats mt-4">
+            <div class="stat-pill"><i class="bi bi-diagram-3"></i> 7 pasos del flujo</div>
+            <div class="stat-pill"><i class="bi bi-clipboard-check"></i> 1-click copy</div>
+            <div class="stat-pill"><i class="bi bi-moon-stars"></i> Tema Monokai</div>
+            <div class="stat-pill"><i class="bi bi-github"></i> GitHub Pages-ready</div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="terminal" role="img" aria-label="Demostración de uso">
+            <div class="term-bar">
+              <span class="dot dot-r"></span>
+              <span class="dot dot-y"></span>
+              <span class="dot dot-g"></span>
+              <span class="term-title">~/dev-projects — zsh · SAP BAS</span>
+            </div>
+            <div class="term-body">
+              <p><span class="term-prompt">$</span> <span class="term-cmd">git clone &lt;url-azure&gt;</span></p>
+              <p class="term-out">Cloning into 'zslcm-planning-doc'...</p>
+              <p><span class="term-prompt">$</span> <span class="term-cmd">npm install</span></p>
+              <p class="term-out">added 387 packages in 12s</p>
+              <p><span class="term-prompt">$</span> <span class="term-cmd">npm run start-noflp</span></p>
+              <p class="term-out">Local: <span class="term-link">https://port8080-workspaces-ws-xxx</span></p>
+              <p><span class="term-prompt typo">$</span> <span class="term-cmd">_</span><span class="term-caret"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       FLUJO PRINCIPAL (cards por paso)
+       ===================================================== -->
+  <section id="flujo" class="section section-categories">
+    <div class="container-xxl">
+      <header class="section-head">
+        <span class="section-tag"><i class="bi bi-grid"></i> 01 · Flujo principal</span>
+        <h2 class="section-title">El recorrido, de clonar a producción</h2>
+        <p class="section-lead">Los 7 pasos del ciclo de vida de una app Fiori en BAS, con sus comandos clave y tips de productividad.</p>
+      </header>
+
+      <div id="catGrid" class="row g-4"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       LISTADO COMPLETO DE COMANDOS
+       ===================================================== -->
+  <section id="comandos" class="section section-all">
+    <div class="container-xxl">
+      <header class="section-head">
+        <span class="section-tag"><i class="bi bi-list-ul"></i> 02 · Listado completo</span>
+        <h2 class="section-title">Todos los comandos</h2>
+        <p class="section-lead">Vista compacta. Filtra por paso del flujo con las pestañas superiores.</p>
+      </header>
+
+      <div class="filter-tabs" role="tablist" id="filterTabs"></div>
+      <div id="allList" class="all-list mt-4"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       TROUBLESHOOTING
+       ===================================================== -->
+  <section id="troubleshooting" class="section section-trouble">
+    <div class="container-xxl">
+      <header class="section-head">
+        <span class="section-tag"><i class="bi bi-tools"></i> 03 · Troubleshooting</span>
+        <h2 class="section-title">Errores comunes (y cómo salir de ellos)</h2>
+        <p class="section-lead">Los tropiezos más frecuentes al trabajar con BAS, MTA y Cloud Foundry — con su solución express.</p>
+      </header>
+
+      <div class="row g-4" id="troubleGrid"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       ATAJOS / TIPS
+       ===================================================== -->
+  <section id="atajos" class="section section-shortcuts">
+    <div class="container-xxl">
+      <header class="section-head">
+        <span class="section-tag"><i class="bi bi-keyboard"></i> 04 · Tips & atajos</span>
+        <h2 class="section-title">Trabaja más rápido en BAS y terminal</h2>
+        <p class="section-lead">Pequeños gestos que ahorran minutos (y a veces horas) en el día a día con Fiori + Azure DevOps.</p>
+      </header>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="shortcut-card h-100">
+            <div class="shortcut-icon"><i class="bi bi-keyboard-fill"></i></div>
+            <div class="shortcut-title">Ctrl/⌘ + K</div>
+            <p class="shortcut-desc">Abre el buscador global y filtra comandos al instante, sin importar dónde estés.</p>
+            <div class="kbd-row">
+              <kbd>Ctrl</kbd> + <kbd>K</kbd>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="shortcut-card h-100">
+            <div class="shortcut-icon"><i class="bi bi-clipboard-check"></i></div>
+            <div class="shortcut-title">Click en cualquier comando</div>
+            <p class="shortcut-desc">Lo copia al portapapeles. Pegalo directo en la terminal de BAS o en tu shell local.</p>
+            <div class="kbd-row">
+              <kbd>Click</kbd>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="shortcut-card h-100">
+            <div class="shortcut-icon"><i class="bi bi-search"></i></div>
+            <div class="shortcut-title">Quick Open en BAS</div>
+            <p class="shortcut-desc">Abre archivos, comandos del palette o acciones contextuales con un atajo.</p>
+            <div class="kbd-row">
+              <kbd>Ctrl</kbd> + <kbd>P</kbd>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="shortcut-card h-100">
+            <div class="shortcut-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+            <div class="shortcut-title">Build + deploy en una línea</div>
+            <p class="shortcut-desc">Compila el MTA y lo despliega en Cloud Foundry sin abrir el menú contextual.</p>
+            <div class="kbd-row">
+              <kbd>mbt build -s . &&amp; cf deploy ...</kbd>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       GALERÍA (capturas del flujo de login a Cloud Foundry)
+       ===================================================== -->
+  <section id="galeria" class="section section-gallery">
+    <div class="container-xxl">
+      <header class="section-head">
+        <span class="section-tag"><i class="bi bi-images"></i> 05 · Galería</span>
+        <h2 class="section-title">Login SSO a Cloud Foundry en 4 pasos</h2>
+        <p class="section-lead">Capturas del flujo real en SAP BAS: Quick Open → Login to Cloud Foundry → passcode → Sing In.</p>
+      </header>
+
+      <div class="row g-4" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="footer">
+    <div class="container-xxl">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-7">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-diagram-3-fill footer-mark"></i>
+            <strong>sap_bas_guide</strong>
+          </div>
+          <p class="mb-0 footer-text">
+            Construido con <span class="text-accent">Bootstrap 5</span>,
+            <span class="text-accent">Bootstrap Icons</span> y un tema custom <span class="text-accent">Monokai / Ambar</span>.
+            Hecho con <i class="bi bi-heart-fill text-danger"></i> por
+            <a href="https://github.com/maxuber79" target="_blank" rel="noopener" class="footer-link">Claudio Muñoz · Universidad Mayor</a>.
+          </p>
+        </div>
+        <div class="col-md-5 text-md-end">
+          <a href="#hero" class="btn btn-ghost btn-sm">
+            <i class="bi bi-arrow-up"></i> Volver arriba
+          </a>
+          <a href="https://github.com/maxuber79/guide-bas" class="btn btn-outline-accent btn-sm ms-2"
+             target="_blank" rel="noopener">
+            <i class="bi bi-github"></i> Ver repo
+          </a>
+        </div>
+      </div>
+      <hr class="footer-sep" />
+      <div class="d-flex justify-content-between flex-wrap small text-muted">
+        <span>© <span id="yearNow"></span> · Hecho para devs SAP.</span>
+        <span>v1.0.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante: volver arriba -->
+  <button id="toTop" class="btn btn-accent to-top" type="button" aria-label="Volver arriba" hidden>
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Toast de feedback (copiado, etc.) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080">
+    <div id="appToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="bi bi-check2-circle me-2"></i>
+          <span id="toastMsg">Comando copiado al portapapeles</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       LIGHTBOX (visor de imágenes de la galería)
+       ===================================================== -->
+  <div class="modal fade img-lightbox" id="imgLightbox" tabindex="-1" aria-hidden="true" aria-labelledby="imgLightboxTitle">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <button type="button" class="btn-close btn-close-white img-lightbox-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <div class="modal-body p-0 text-center">
+          <img id="imgLightboxSrc" src="" alt="" class="img-lightbox-img" />
+        </div>
+        <div class="img-lightbox-foot">
+          <span class="img-lightbox-step" id="imgLightboxStep"></span>
+          <strong id="imgLightboxTitle"></strong>
+          <small id="imgLightboxDesc"></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/vendor/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

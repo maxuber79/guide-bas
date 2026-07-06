@@ -1,6 +1,9 @@
 # 🧠 Guía General de Trabajo en SAP Fiori / BAS / Azure DevOps
 
-## 📚 Índice 
+> ### 🌐 **Landing interactiva → [maxuber79.github.io/guide-sap-business-aplication-estudio](https://maxuber79.github.io/guide-sap-business-aplication-estudio/)**
+> Cheatsheet visual con **copy-to-clipboard**, **búsqueda global (Ctrl+K)**, **lightbox** en capturas, **tema Monokai/Ámbar** y los 7 pasos del flujo clonar → deploy a BTP. Misma info que este README, pero navegable.
+
+## 📚 Índice
 - 🚀 [1. Clonar repositorio](#-1-clonar-el-repositorio-desde-azure-devops)
 - ⚙️ [2. Instalar dependencias](#-2-instalar-dependencias)
 - 💻 [3. Ejecutar aplicación en SAP BAS](#-3-ejecutar-aplicación-en-sap-bas)
@@ -9,6 +12,7 @@
 - 📦 [6. Build & Deploy MTA](#-6-build--deploy-mta)
 - 🔄 [7. Flujo de Pull Request (Azure DevOps)](#-7-flujo-de-pull-request-azure-devops)
 - 🪓 [8. Guía Rápida GIT](#-8-guía-rápida-git)
+- 🖥️ [9. Landing page (desarrollo local)](#-9-landing-page-desarrollo-local)
 
 ---
 
@@ -259,6 +263,38 @@ Documentación base para configurar, iniciar y trabajar con repositorios GIT.
 Incluye comandos esenciales, tips útiles y atajos.
 
 👉 [Visitar repositorio](https://github.com/maxuber79/comand-git?tab=readme-ov-file#%EF%B8%8F-configuraci%C3%B3n-b%C3%A1sica)
+
+## 🖥️ 9. Landing page (desarrollo local)
+
+Este repo incluye una **landing interactiva** (HTML + Bootstrap 5 + SCSS) que renderiza los pasos del flujo con copy-to-clipboard, búsqueda global y lightbox en las capturas.
+
+### 📍 URL publicada
+👉 **[maxuber79.github.io/guide-sap-business-aplication-estudio](https://maxuber79.github.io/guide-sap-business-aplication-estudio/)**  
+*(se publica automáticamente con cada push a `main` vía `.github/workflows/deploy.yml`)*
+
+### 🛠 Desarrollo local
+
+```bash
+npm install          # instala Bootstrap, Bootstrap-Icons y Sass
+npm run build        # copia vendor + compila SCSS → assets/css/styles.min.css
+npm run watch:css    # recompila SCSS en cada cambio
+```
+
+Luego abre `index.html` con **Live Server** (extensión de VS Code) o sirve la carpeta con cualquier static server.
+
+### 📁 Estructura relevante
+
+```
+index.html              # landing principal
+scss/                   # fuentes SCSS (tema Monokai/Ámbar)
+js/flujo.json           # base de datos de pasos + troubleshooting + galería
+js/app.js               # render dinámico, búsqueda, copy, lightbox
+scripts/copy-vendor.js  # copia Bootstrap a /assets/vendor
+.github/workflows/      # CI/CD → GitHub Pages
+img/                    # capturas del flujo de login a Cloud Foundry
+```
+
+---
 
 **Desarrollado por:**  
 Claudio Muñoz – Universidad Mayor 💙  

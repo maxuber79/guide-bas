@@ -1,0 +1,22 @@
+# GitHub Pages config
+title: Guía SAP Business Application Studio
+description: Cheatsheet interactivo para trabajar con SAP BAS, Fiori UI5, Azure DevOps y BTP/Cloud Foundry. Tema Monokai/Ambar.
+
+# No procesar con Jekyll — es sitio estático plano
+remote_theme: false
+plugins: []
+
+# Excluir carpeta de dependencias y archivos no servibles
+exclude:
+  - node_modules/
+  - scss/
+  - scripts/
+  - package.json
+  - package-lock.json
+  - README.md
+  - README_GENERAL.md
+  - README_DEPLOY_MERGED.md
+  - DEPLOY.md
+  - .gitignore
+  - .github/workflows/
+  - "*.pptx"

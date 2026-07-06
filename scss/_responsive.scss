@@ -1,0 +1,25 @@
+/* ============================================================
+   _responsive.scss
+   Ajustes finos para breakpoints.
+   ============================================================ */
+
+@include media-breakpoint-down(lg) {
+  .hero { min-height: auto; padding: 5rem 0 3rem; }
+  .hero-stats { gap: .35rem; }
+  .stat-pill { font-size: .72rem; }
+}
+
+@include media-breakpoint-down(md) {
+  .section { padding: 3.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .search-hit {
+    flex-wrap: wrap;
+    .hit-label { min-width: 0; flex: 1 1 100%; }
+    .hit-cmd { font-size: .72rem; }
+  }
+  .all-item {
+    flex-wrap: wrap;
+    .all-label { min-width: 0; flex: 1 1 100%; }
+  }
+  .to-top { bottom: 1rem; right: 1rem; }
+}

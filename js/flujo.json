@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Guía SAP Business Application Studio",
+    "subtitle": "Cheatsheet interactivo para SAP BAS, Fiori UI5, Azure DevOps y BTP / Cloud Foundry.",
+    "author": "Claudio Muñoz · Universidad Mayor"
+  },
+  "categories": [
+    {
+      "id": "clonar",
+      "title": "1. Clonar el repo",
+      "icon": "bi bi-git",
+      "color": "#f15b2c",
+      "description": "Bajar el código desde Azure DevOps.",
+      "commands": [
+        { "label": "Clonar repositorio", "cmd": "git clone <url-azure-devops>" },
+        { "label": "Entrar a la carpeta del proyecto", "cmd": "cd <nombre-del-proyecto>" }
+      ]
+    },
+    {
+      "id": "dependencias",
+      "title": "2. Instalar dependencias",
+      "icon": "devicon-npm-original-wordmark",
+      "color": "#cb3837",
+      "description": "Descargar UI5 Tooling y Fiori Tools.",
+      "commands": [
+        { "label": "Instalar dependencias", "cmd": "npm install" },
+        { "label": "Versión corta de install", "cmd": "npm i" }
+      ]
+    },
+    {
+      "id": "ejecutar",
+      "title": "3. Ejecutar en BAS",
+      "icon": "bi bi-play-circle-fill",
+      "color": "#a6e22e",
+      "description": "Levantar la app con o sin Launchpad.",
+      "commands": [
+        { "label": "Correr app sin FLP (modo local)", "cmd": "npm run start-noflp" },
+        { "label": "Correr app con Launchpad (mock)", "cmd": "npm run start-mock" },
+        { "label": "Comando fiori equivalente", "cmd": "fiori run --open \"index.html?sap-client=300&sap-ui-xx-viewCache=false\"" }
+      ]
+    },
+    {
+      "id": "mock",
+      "title": "4. Simulador de usuario",
+      "icon": "bi bi-person-badge",
+      "color": "#66d9ef",
+      "description": "Mock de usuario para desarrollo local en BAS.",
+      "commands": [
+        { "label": "Detectar entorno local en JS", "cmd": "const bIsLocalBAS = window.location.host.includes(\"applicationstudio.cloud.sap\") || window.location.host.includes(\"localhost\");" },
+        { "label": "Login name simulado", "cmd": "\"login_name\": \"120003496\"" },
+        { "label": "Email simulado", "cmd": "\"email\": \"dev@umayor.cl\"" }
+      ]
+    },
+    {
+      "id": "proxy",
+      "title": "5. Proxy a QAS",
+      "icon": "bi bi-hdd-network",
+      "color": "#ae81ff",
+      "description": "Apuntar el proxy local al backend SAP de QA.",
+      "commands": [
+        { "label": "Backend QAS (ejemplo ui5-local.yaml)", "cmd": "url: https://weberpqas.umayor.cl" },
+        { "label": "Cliente QAS", "cmd": "client: \"300\"" },
+        { "label": "Ignorar errores de certificado", "cmd": "ignoreCertErrors: true" }
+      ]
+    },
+    {
+      "id": "build",
+      "title": "6. Build MTA",
+      "icon": "bi bi-box-seam",
+      "color": "#fd971f",
+      "description": "Compilar el proyecto como archivo .mtar.",
+      "commands": [
+        { "label": "Build con npm script", "cmd": "npm run build:mta" },
+        { "label": "Build con mbt CLI", "cmd": "mbt build -s ." },
+        { "label": "Deploy con fiori CLI", "cmd": "fiori cfDeploy" },
+        { "label": "Archivo generado", "cmd": "mta_archives/com.umayor.sclm.zslcmplanningdoc_0.0.1.mtar" }
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": "7. Deploy a BTP",
+      "icon": "bi bi-cloud-arrow-up",
+      "color": "#1d8ac9",
+      "description": "Publicar la app en SAP BTP / Cloud Foundry.",
+      "commands": [
+        { "label": "Login SSO en BAS", "cmd": "Login to Cloud Foundry (Quick Open → Ctrl+P)" },
+        { "label": "Deploy del .mtar", "cmd": "cf deploy mta_archives/*.mtar" },
+        { "label": "Listar apps desplegadas", "cmd": "cf apps" },
+        { "label": "Listar apps HTML5", "cmd": "cf html5-list" },
+        { "label": "Build + deploy en una línea", "cmd": "mbt build -s . && cf deploy mta_archives/*.mtar" }
+      ]
+    }
+  ],
+  "troubleshooting": [
+    {
+      "icon": "bi bi-shield-exclamation",
+      "color": "#e73c68",
+      "error": "ERR_OSSL_EVP_UNSUPPORTED",
+      "cause": "Node incompatible",
+      "solution": "Usar Node 18 (recomendado) o exportar NODE_OPTIONS=--openssl-legacy-provider antes del build."
+    },
+    {
+      "icon": "bi bi-hdd",
+      "color": "#fd971f",
+      "error": "No space left on device",
+      "cause": "Dev Space lleno",
+      "solution": "Eliminar proyectos no utilizados o ampliar el espacio del Dev Space en BAS."
+    },
+    {
+      "icon": "bi bi-grid-3x3-gap",
+      "color": "#66d9ef",
+      "error": "No aparece en Launchpad",
+      "cause": "Falta content deploy",
+      "solution": "Revisar xs-app.json y el destino configurado en BTP. Confirmar que el content deployment se ejecutó."
+    },
+    {
+      "icon": "bi bi-key",
+      "color": "#ae81ff",
+      "error": "401 / Unauthorized en backend",
+      "cause": "Sesión o cookie vencida",
+      "solution": "Volver a iniciar sesión en el backend SAP y refrescar el navegador (o reiniciar fiori run)."
+    },
+    {
+      "icon": "bi bi-globe",
+      "color": "#a6e22e",
+      "error": "CORS / Mixed content",
+      "cause": "HTTPS ↔ HTTP mixto",
+      "solution": "Servir la app y consumir el backend por HTTPS. Configurar ignoreCertErrors: true solo en dev."
+    },
+    {
+      "icon": "bi bi-arrow-repeat",
+      "color": "#f92672",
+      "error": "View cache stale en BAS",
+      "cause": "Cache de UI5 desactualizado",
+      "solution": "Ejecutar con sap-ui-xx-viewCache=false en la URL, o limpiar caché del navegador."
+    }
+  ],
+  "gallery": [
+    {
+      "step": "Paso 1 de 4",
+      "title": "Quick Open",
+      "desc": "Abre el buscador con Ctrl + P y escribe \"Login to Cloud Foundry\".",
+      "img": "img/paso1.png"
+    },
+    {
+      "step": "Paso 2 de 4",
+      "title": "Login to Cloud Foundry",
+      "desc": "Selecciona el comando o abre la página de SSO para generar el passcode.",
+      "img": "img/paso2.png"
+    },
+    {
+      "step": "Paso 3 de 4",
+      "title": "Copiar passcode",
+      "desc": "Copia el código de autenticación que devuelve la página de SAP.",
+      "img": "img/paso3.png"
+    },
+    {
+      "step": "Paso 4 de 4",
+      "title": "Sing In",
+      "desc": "Pega el passcode en el campo de BAS y haz click en Sing In para completar el login.",
+      "img": "img/paso4.png"
+    }
+  ]
+}
