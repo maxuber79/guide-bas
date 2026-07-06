@@ -21,9 +21,13 @@ Aplicación **Planificación de Asignaturas** (SAP UI5 / Fiori) migrada desde SA
 ### Nota: Al clonar el repositorio, probablemente pedirá credenciales del repositorio de Azure DevOps.
 
 ```text
-Username: xxxxx.xxxxx
-Password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Username: <tu-usuario-azure-devops>
+Password: <tu-personal-access-token>
 ```
+
+> ⚠️ **Importante:** nunca commitees tu PAT al repo.  
+> Genera uno en Azure DevOps → *User settings → Personal access tokens*  
+> con permisos de **Code (Read & Write)**. Si ya quedó expuesto, **revócalo** de inmediato.
 
 ```bash
 git clone [url azure]
