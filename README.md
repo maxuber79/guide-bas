@@ -1,6 +1,6 @@
 # 🧠 Guía General de Trabajo en SAP Fiori / BAS / Azure DevOps
 
-> ### 🌐 **Landing interactiva → [maxuber79.github.io/guide-sap-business-aplication-estudio](https://maxuber79.github.io/guide-sap-business-aplication-estudio/)**
+> ### 🌐 **Landing interactiva → [maxuber79.github.io/guide-bas](https://maxuber79.github.io/guide-bas/)**
 > Cheatsheet visual con **copy-to-clipboard**, **búsqueda global (Ctrl+K)**, **lightbox** en capturas, **tema Monokai/Ámbar** y los 7 pasos del flujo clonar → deploy a BTP. Misma info que este README, pero navegable.
 
 ## 📚 Índice
@@ -269,7 +269,7 @@ Incluye comandos esenciales, tips útiles y atajos.
 Este repo incluye una **landing interactiva** (HTML + Bootstrap 5 + SCSS) que renderiza los pasos del flujo con copy-to-clipboard, búsqueda global y lightbox en las capturas.
 
 ### 📍 URL publicada
-👉 **[maxuber79.github.io/guide-sap-business-aplication-estudio](https://maxuber79.github.io/guide-sap-business-aplication-estudio/)**  
+👉 **[maxuber79.github.io/guide-bas](https://maxuber79.github.io/guide-bas/)**  
 *(se publica automáticamente con cada push a `main` vía `.github/workflows/deploy.yml`)*
 
 ### 🛠 Desarrollo local
