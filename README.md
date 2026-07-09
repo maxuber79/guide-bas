@@ -277,18 +277,25 @@ Cloud Foundry abre el navegador, te autenticas con SSO y te lista las orgs dispo
 
 #### 2) Cambiar de ambiente con `cf target` (sin re-login)
 
+Copiar y pegar directamente — primero seleccionas la **org**, luego listas y eliges el **space**:
+
 ```bash
 # Apuntar a QAS
-cf target -o "btp-umay-qas-eejalw6c" -s space
+cf target -o "btp-umay-qas-eejalw6c"
 
 # Apuntar a DEV
-cf target -o "Universidad Mayor_btp-umay-dev-vvhmu8bp" -s space
+cf target -o "Universidad Mayor_btp-umay-dev-vvhmu8bp"
 
 # Apuntar a PRD
-cf target -o "Universidad Mayor_btp-umay-prd-5x2o3sqe" -s space
+cf target -o "Universidad Mayor_btp-umay-prd-5x2o3sqe"
 ```
 
-> Reemplaza `space` por el nombre del Space dentro de cada subaccount (`cf spaces` para listarlo).
+Después de seleccionar la org, lista los spaces disponibles y elige uno:
+
+```bash
+cf spaces                      # ver spaces de la org actual
+cf target -s <nombre-space>    # apuntar al space (reemplaza <nombre-space>)
+```
 
 #### 3) Comandos de inspección
 
@@ -304,7 +311,7 @@ cf target      # muestra toda la info del target actual (org, space, user, api)
 cf orgs                                  # ver organizaciones
 cf target -o "btp-umay-qas-eejalw6c"     # seleccionar una
 cf spaces                                # ver sus spaces
-cf target -s space                       # apuntar al space deseado
+cf target -s <nombre-space>              # apuntar al space deseado
 ```
 
 ---

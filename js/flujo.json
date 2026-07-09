@@ -89,11 +89,12 @@
         { "label": "Listar apps HTML5", "cmd": "cf html5-list" },
         { "label": "Build + deploy en una línea", "cmd": "mbt build -s . && cf deploy mta_archives/*.mtar" },
         { "label": "Login SSO único (todos los ambientes)", "cmd": "cf login --sso" },
-        { "label": "Apuntar a QAS", "cmd": "cf target -o \"btp-umay-qas-eejalw6c\" -s space" },
-        { "label": "Apuntar a DEV", "cmd": "cf target -o \"Universidad Mayor_btp-umay-dev-vvhmu8bp\" -s space" },
-        { "label": "Apuntar a PRD", "cmd": "cf target -o \"Universidad Mayor_btp-umay-prd-5x2o3sqe\" -s space" },
+        { "label": "Apuntar a QAS (selecciona org)", "cmd": "cf target -o \"btp-umay-qas-eejalw6c\"" },
+        { "label": "Apuntar a DEV (selecciona org)", "cmd": "cf target -o \"Universidad Mayor_btp-umay-dev-vvhmu8bp\"" },
+        { "label": "Apuntar a PRD (selecciona org)", "cmd": "cf target -o \"Universidad Mayor_btp-umay-prd-5x2o3sqe\"" },
+        { "label": "Ver spaces de la org actual", "cmd": "cf spaces" },
+        { "label": "Seleccionar un space", "cmd": "cf target -s <nombre-space>" },
         { "label": "Ver organizaciones disponibles", "cmd": "cf orgs" },
-        { "label": "Ver spaces de la organización actual", "cmd": "cf spaces" },
         { "label": "Ver toda la información del target actual", "cmd": "cf target" }
       ]
     }
