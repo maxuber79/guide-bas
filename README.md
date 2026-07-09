@@ -255,6 +255,39 @@ Aplicación visible en:
 mbt build -s . && cf deploy mta_archives/*.mtar
 ```
 
+### 10.7 Cambiar Organization / Space en Cloud Foundry
+
+Si **DEV y QAS** están en la misma Organization, basta con cambiar el Space:
+
+```bash
+cf target -s qas      # apuntar a QAS
+cf target -s dev      # volver a DEV
+```
+
+Si están en **distintas organizaciones**, especifica ambas:
+
+```bash
+cf target -o "Universidad Mayor QAS" -s qas
+cf target -o "Universidad Mayor DEV"  -s dev
+```
+
+Comandos de inspección (útiles cuando no recuerdas los nombres):
+
+```bash
+cf orgs        # lista las organizaciones disponibles
+cf spaces      # lista los spaces de la organización actual
+cf target      # muestra toda la info del target actual (org, space, user, api)
+```
+
+Flujo recomendado cuando no recuerdas los nombres:
+
+```bash
+cf orgs                      # ver organizaciones
+cf target -o "NombreOrg"     # seleccionar una
+cf spaces                     # ver sus spaces
+cf target -s qas              # apuntar al space deseado
+```
+
 ---
 
 ## 🪓 8. Guía Rápida GIT

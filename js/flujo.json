@@ -87,7 +87,14 @@
         { "label": "Deploy del .mtar", "cmd": "cf deploy mta_archives/*.mtar" },
         { "label": "Listar apps desplegadas", "cmd": "cf apps" },
         { "label": "Listar apps HTML5", "cmd": "cf html5-list" },
-        { "label": "Build + deploy en una línea", "cmd": "mbt build -s . && cf deploy mta_archives/*.mtar" }
+        { "label": "Build + deploy en una línea", "cmd": "mbt build -s . && cf deploy mta_archives/*.mtar" },
+        { "label": "Cambiar solo el Space (DEV→QAS)", "cmd": "cf target -s qas" },
+        { "label": "Cambiar solo el Space (QAS→DEV)", "cmd": "cf target -s dev" },
+        { "label": "Cambiar Org y Space (QAS)", "cmd": "cf target -o \"Universidad Mayor QAS\" -s qas" },
+        { "label": "Cambiar Org y Space (DEV)", "cmd": "cf target -o \"Universidad Mayor DEV\" -s dev" },
+        { "label": "Ver organizaciones disponibles", "cmd": "cf orgs" },
+        { "label": "Ver spaces de la organización actual", "cmd": "cf spaces" },
+        { "label": "Ver toda la información del target actual", "cmd": "cf target" }
       ]
     }
   ],
