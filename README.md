@@ -255,23 +255,42 @@ Aplicación visible en:
 mbt build -s . && cf deploy mta_archives/*.mtar
 ```
 
-### 10.7 Cambiar Organization / Space en Cloud Foundry
+### 10.7 Cambiar de ambiente sin volver a hacer login (DEV / QAS / PRD)
 
-Si **DEV y QAS** están en la misma Organization, basta con cambiar el Space:
+En BTP cada subaccount tiene su propia **Organization (CF org)**. Los ambientes de este proyecto son:
+
+| Ambiente | Organization (CF org)                              |
+|----------|----------------------------------------------------|
+| **QAS**  | `btp-umay-qas-eejalw6c`                            |
+| **DEV**  | `Universidad Mayor_btp-umay-dev-vvhmu8bp`          |
+| **PRD**  | `Universidad Mayor_btp-umay-prd-5x2o3sqe`          |
+
+> 💡 **Clave:** comparten el mismo CF API endpoint (misma región BTP), por lo que **un único `cf login --sso`** te deja cambiar entre los tres ambientes con `cf target` **sin volver a autenticarte**.
+
+#### 1) Login SSO — una sola vez
 
 ```bash
-cf target -s qas      # apuntar a QAS
-cf target -s dev      # volver a DEV
+cf login --sso
 ```
 
-Si están en **distintas organizaciones**, especifica ambas:
+Cloud Foundry abre el navegador, te autenticas con SSO y te lista las orgs disponibles. Selecciona cualquiera.
+
+#### 2) Cambiar de ambiente con `cf target` (sin re-login)
 
 ```bash
-cf target -o "Universidad Mayor QAS" -s qas
-cf target -o "Universidad Mayor DEV"  -s dev
+# Apuntar a QAS
+cf target -o "btp-umay-qas-eejalw6c" -s space
+
+# Apuntar a DEV
+cf target -o "Universidad Mayor_btp-umay-dev-vvhmu8bp" -s space
+
+# Apuntar a PRD
+cf target -o "Universidad Mayor_btp-umay-prd-5x2o3sqe" -s space
 ```
 
-Comandos de inspección (útiles cuando no recuerdas los nombres):
+> Reemplaza `space` por el nombre del Space dentro de cada subaccount (`cf spaces` para listarlo).
+
+#### 3) Comandos de inspección
 
 ```bash
 cf orgs        # lista las organizaciones disponibles
@@ -279,13 +298,13 @@ cf spaces      # lista los spaces de la organización actual
 cf target      # muestra toda la info del target actual (org, space, user, api)
 ```
 
-Flujo recomendado cuando no recuerdas los nombres:
+#### 4) Flujo recomendado cuando no recuerdas los nombres
 
 ```bash
-cf orgs                      # ver organizaciones
-cf target -o "NombreOrg"     # seleccionar una
-cf spaces                     # ver sus spaces
-cf target -s qas              # apuntar al space deseado
+cf orgs                                  # ver organizaciones
+cf target -o "btp-umay-qas-eejalw6c"     # seleccionar una
+cf spaces                                # ver sus spaces
+cf target -s space                       # apuntar al space deseado
 ```
 
 ---
